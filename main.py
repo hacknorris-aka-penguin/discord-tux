@@ -394,6 +394,6 @@ async def neofetch(ctx):
     )
 
 
-token = "ODUzMzQ4OTU3OTUzOTgyNTAy.YMUFJg.UASw3bQx9wvICVjsL8Apz_OqvYI"
+token = ""
 bot.run(token)
 
