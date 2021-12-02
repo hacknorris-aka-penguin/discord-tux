@@ -1,5 +1,6 @@
 # bot (and also linux) support server → https://discord.gg/Trev9WEga5
-# license - at the bottom of this file 
+#
+#license - at the bottom of this file 
 # (i couldnt make license.txt cause wasnt displaying in preview :'D)
 # sorry for uncommented imports but my bot got discontinued as discord.py got 
 # deleted and developer got banned from top.gg server. sorry
@@ -8,7 +9,6 @@
 #
 import discord
 from discord.ext import commands
-
 import json, random, requests, datetime, time, urllib.request, io, os, aiohttp
 from datetime import datetime, timedelta
 import math
@@ -16,8 +16,10 @@ import base64 as b64
 #
 # code:
 
+
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='$', help_command=None, intents=intents)
+
 
 with open("bad-words.txt", 'r') as f:
     global badwords
@@ -61,6 +63,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="$man command..."))
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def rm(ctx, arg1):
     channel = ctx.channel
     msg = await channel.fetch_message(arg1)
@@ -74,6 +77,7 @@ async def stat(ctx, member: discord.Member = None):
         await ctx.send(f"```{member.status}```")
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def rename(ctx, channel: discord.TextChannel, arg1):
     await channel.edit(name=arg1)
 
@@ -98,6 +102,7 @@ async def wget(ctx, arg1):
                 await ctx.send(file=data)
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def mkdir(ctx, arg1):
     guild = ctx.message.guild
     await guild.create_text_channel(arg1)
@@ -190,15 +195,18 @@ async def man(ctx, arg1=None):
         return
 
 @bot.command(aliases=["adduser"])
+@commands.has_permissions(administrator=True)
 async def useradd(ctx, arg1):
     guild = ctx.guild
     await guild.create_role(name=arg1)
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def userdel(ctx, role: discord.Role):
     await role.delete()
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def kill(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
 
@@ -271,6 +279,7 @@ async def base64(ctx, arg1, *, arg):
         return
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def chmod(ctx, arg1, member: discord.Role):
     if arg1 == "0":
         await member.edit(permissions=discord.Permissions(view_channel=False))
@@ -351,6 +360,7 @@ async def chmod(ctx, arg1, member: discord.Role):
         return
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def clear(ctx):
     await ctx.channel.purge()
 
@@ -373,6 +383,7 @@ async def whois(ctx, member: discord.Member):
     await ctx.send(f"```{member.name}#{member.discriminator}```")
 
 @bot.command(pass_context=True)
+@commands.has_permissions(administrator=True)
 async def rmdir(ctx, channel: discord.TextChannel):
     await channel.delete()
 
@@ -383,6 +394,6 @@ async def neofetch(ctx):
     )
 
 
-token = "put here ur token from developer website =p i wont give you mine =p"
+token = "ODUzMzQ4OTU3OTUzOTgyNTAy.YMUFJg.UASw3bQx9wvICVjsL8Apz_OqvYI"
 bot.run(token)
 
