@@ -13,7 +13,7 @@ discord bot based on linux commands like :
 + stat
 and more
 
-note - this bot will never be verified so pleses, dont inveite if not REALLY needed... (to 100 servers cause uses a lot of intents)
+note - this bot will never be verified so please, dont invite if not REALLY needed... (to 100 servers cause uses a lot of intents)
 
 [join link](https://discord.com/api/oauth2/authorize?client_id=853348957953982502&permissions=8&scope=bot)
 
